@@ -2,67 +2,70 @@
 
 /**
 
- * push - Add a new element to the top of the stack
+ * f_push - add node to the stack
 
- * @stack: Double pointer to the head of the stack
+ * @head: stack head
 
- * @line_number: Line number of the opcode being executed
+ * @counter: line_number
 
- */
+ * Return: no return
 
-void push_stack(stack_t **stack, unsigned int line_number)
+*/
+
+void f_push(stack_t **head, unsigned int counter)
 
 {
 
-    stack_t *new_node;
+	int n, j = 0, flag = 0;
 
-    int value;
+	if (bus.arg)
 
-    /* Ensure the stack and line_number are valid */
+	{
 
-    if (stack == NULL)
+		if (bus.arg[0] == '-')
 
-        return;
+			j++;
 
-    /* Extract the integer value from the opcode argument */
+		for (; bus.arg[j] != '\0'; j++)
 
-    value = /* Extract the integer value from the opcode argument */;
+		{
 
-    /* Create a new node */
+			if (bus.arg[j] > 57 || bus.arg[j] < 48)
 
-    new_node = malloc(sizeof(stack_t));
+				flag = 1; }
 
-    if (new_node == NULL)
+		if (flag == 1)
 
-    {
+		{ fprintf(stderr, "L%d: usage: push integer\n", counter);
 
-        /* Handle malloc failure */
+			fclose(bus.file);
 
-        fprintf(stderr, "Error: malloc failed\n");
+			free(bus.content);
 
-        /* Exit or return depending on your error handling strategy */
+			free_stack(*head);
 
-        exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE); }}
 
-    }
+	else
 
-    /* Assign values to the new node */
+	{ fprintf(stderr, "L%d: usage: push integer\n", counter);
 
-    new_node->n = value;
+		fclose(bus.file);
 
-    new_node->prev = NULL;
+		free(bus.content);
 
-    new_node->next = *stack;
+		free_stack(*head);
 
-    /* Update previous node if the stack is not empty */
+		exit(EXIT_FAILURE); }
 
-    if (*stack != NULL)
+	n = atoi(bus.arg);
 
-        (*stack)->prev = new_node;
+	if (bus.lifi == 0)
 
-    /* Update the head of the stack */
+		addnode(head, n);
 
-    *stack = new_node;
+	else
+
+		addqueue(head, n);
 
 }
-
