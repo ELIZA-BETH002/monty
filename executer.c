@@ -32,7 +32,7 @@ int executer(char *content, stack_t **stack, unsigned int counter, FILE *file)
 
 				{"sub", sub},
 
-				{"div", div},
+				{"div", _div},
 
 				{"mul", mul},
 
