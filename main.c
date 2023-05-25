@@ -68,7 +68,7 @@ int main(int argc, char *argv[])
 
 		{
 
-			execute(content, &stack, counter, file);
+			executer(content, &stack, counter, file);
 
 		}
 
