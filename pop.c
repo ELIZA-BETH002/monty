@@ -1,29 +1,43 @@
 #include "monty.h"
 
-int pop_stack(stack_t **stack)
+/**
+
+ * pop - prints the top
+
+ * @head: stack head
+
+ * @counter: line_number
+
+ * Return: no return
+
+*/
+
+void pop(stack_t **head, unsigned int counter)
 
 {
 
-    if (*stack == NULL)
+	stack_t *h;
 
-    {
+	if (*head == NULL)
 
-        fprintf(stderr, "Error: Can't pop an empty stack\n");
+	{
 
-        return EXIT_FAILURE;
+		fprintf(stderr, "L%d: can't pop an empty stack\n", counter);
 
-    }
+		fclose(bus.file);
 
-    stack_t *temp = *stack;
+		free(bus.content);
 
-    *stack = (*stack)->next;
+		free_stack(*head);
 
-    if (*stack != NULL)
+		exit(EXIT_FAILURE);
 
-        (*stack)->prev = NULL;
+	}
 
-    free(temp);
+	h = *head;
 
-    return EXIT_SUCCESS;
+	*head = h->next;
+
+	free(h);
 
 }
