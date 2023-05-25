@@ -2,7 +2,7 @@
 
 /**
 
- * f_div - divides the top two elements of the stack.
+ * div - divides the top two elements of the stack.
 
  * @head: stack head
 
