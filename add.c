@@ -2,7 +2,7 @@
 
 /**
 
- * f_add - adds the top two elements of the stack.
+ * add - adds the top two elements of the stack.
 
  * @head: stack head
 
