@@ -1,64 +1,171 @@
-#include <stdio.h>
-#include <stdlib.h>
 
-#define STACK_SIZE 100
 
-typedef struct {
-    int stack[STACK_SIZE];
-    int top;
-} Stack;
+/**
 
-void push(Stack *stack, int value) {
-    if (stack->top == STACK_SIZE) {
-        fprintf(stderr, "Stack overflow\n");
-        exit(EXIT_FAILURE);
-    }
-    stack->stack[stack->top++] = value;
+ * get_func - selects the right function
+
+ * @parsed: line from the bytecode file passed to main
+
+ *
+
+ * Return: pointer to the selected function, or NULL on failure
+
+ */
+
+void (*get_func(char **parsed))(stack_t **, unsigned int)
+
+{
+
+ instruction_t func_arr[] = {
+
+  {"push", push_handler},
+
+  {"pall", pall_handler},
+
+  {"pint", pint_handler},
+
+  {"pop", pop_handler},
+
+  {"swap", swap_handler},
+
+  {"add", add_handler},
+
+  {"nop", nop_handler},
+
+  {"sub", sub_handler},
+
+  {"div", div_handler},
+
+  {"mul", mul_handler},
+
+  {"mod", mod_handler},
+
+  {"pchar", pchar_handler},
+
+  {"pstr", pstr_handler},
+
+  {"rotl", rotl_handler},
+
+  {"rotr", rotr_handler},
+
+  {"stack", stack_handler},
+
+  {"queue", queue_handler},
+
+  {NULL, NULL}
+
+ };
+
+ int codes = 17, i;
+
+ for (i = 0; i < codes; i++)
+
+ {
+
+  if (strcmp(func_arr[i].opcode, parsed[0]) == 0)
+
+  {
+
+   return (func_arr[i].f);
+
+  }
+
+ }
+
+ return (NULL);
+
 }
 
-void pall(Stack *stack) {
-    int i;
-    for (i = stack->top - 1; i >= 0; i--) {
-        printf("%d\n", stack->stack[i]);
-    }
+/**
+
+ * push_handler - handles the push instruction
+
+ * @stack: double pointer to the stack to push to
+
+ * @line_number: number of the line in the file
+
+ */
+
+void push_handler(stack_t **stack, unsigned int line_number)
+
+{
+
+ stack_t *new;
+
+ int num = 0, i;
+
+ if (data.words[1] == NULL)
+
+ {
+
+  dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
+
+  free_all(1);
+
+  exit(EXIT_FAILURE);
+
+ }
+
+ for (i = 0; data.words[1][i]; i++)
+
+ {
+
+  if (isalpha(data.words[1][i]) != 0)
+
+  {
+
+   dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
+
+   free_all(1);
+
+   exit(EXIT_FAILURE);
+
+  }
+
+ }
+
+ num = atoi(data.words[1]);
+
+ if (data.qflag == 0)
+
+  new = add_dnodeint(stack, num);
+
+ else if (data.qflag == 1)
+
+  new = add_dnodeint_end(stack, num);
+
+ if (!new)
+
+ {
+
+  dprintf(STDERR_FILENO, MALLOC_FAIL);
+
+  free_all(1);
+
+  exit(EXIT_FAILURE);
+
+ }
+
 }
 
-int main(int argc, char *argv[]) {
-    if (argc != 2) {
-        fprintf(stderr, "Usage: monty <file>\n");
-        return EXIT_FAILURE;
-    }
-    
-    FILE *file = fopen(argv[1], "r");
-    if (file == NULL) {
-        fprintf(stderr, "Unable to open file: %s\n", argv[1]);
-        return EXIT_FAILURE;
-    }
-    
-    Stack stack;
-    stack.top = 0;
-    
-    char opcode[100];
-    int arg;
-    int line_number = 1;
-    
-    while (fscanf(file, "%s", opcode) == 1) {
-        if (strcmp(opcode, "push") == 0) {
-            if (fscanf(file, "%d", &arg) != 1) {
-                fprintf(stderr, "L%d: usage: push integer\n", line_number);
-                return EXIT_FAILURE;
-            }
-            push(&stack, arg);
-        } else if (strcmp(opcode, "pall") == 0) {
-            pall(&stack);
-        } else {
-            fprintf(stderr, "L%d: unknown opcode: %s\n", line_number, opcode);
-            return EXIT_FAILURE;
-        }
-        line_number++;
-    }
-    
-    fclose(file);
-    return EXIT_SUCCESS;
-}
+/**
 
+ * pall_handler - handles the pall instruction
+
+ * @stack: double pointer to the stack to push to
+
+ * @line_number: number of the line in the file
+
+ */
+
+void pall_handler(stack_t **stack, unsigned int line_number)
+
+{
+
+ (void)line_number;
+
+ if (*stack)
+
+  print_dlistint(*stack);
+
+}
