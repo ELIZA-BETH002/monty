@@ -64,45 +64,45 @@ typedef struct instruction_s
 
 /* Task 0 */
 
-void push(stack_t **stack, unsigned int line_number);
+void push_stack(stack_t **stack, unsigned int line_number);
 
-void pall(stack_t **stack, unsigned int line_number);
+void pall_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 1 */
 
-void pint(stack_t **stack, unsigned int line_number);
+void pint_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 2 */
 
-void pop(stack_t **stack, unsigned int line_number);
+void pop_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 3 */
 
-void swap(stack_t **stack, unsigned int line_number);
+void swap_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 4 */
 
-void add(stack_t **stack, unsigned int line_number);
+void add_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 5 */
 
-void nop(stack_t **stack, unsigned int line_number);
+void nop_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 6 (Advanced) */
 
-void sub(stack_t **stack, unsigned int line_number);
+void sub_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 7 (Advanced) */
 
-void _div(stack_t **stack, unsigned int line_number);
+void div_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 8 (Advanced) */
 
-void mul(stack_t **stack, unsigned int line_number);
+void mul_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 9 (Advanced) */
 
-void mod(stack_t **stack, unsigned int line_number);
+void mod_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 10 (Advanced) */
 
