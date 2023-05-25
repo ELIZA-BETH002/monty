@@ -128,7 +128,7 @@ void nop(stack_t **head, unsigned int counter);
 
 void sub(stack_t **head, unsigned int counter);
 
-void div(stack_t **head, unsigned int counter);
+void _div(stack_t **head, unsigned int counter);
 
 void mul(stack_t **head, unsigned int counter);
 
