@@ -10,7 +10,7 @@
 
  */
 
-void push(stack_t **stack, unsigned int line_number)
+void push_stack(stack_t **stack, unsigned int line_number)
 
 {
 
