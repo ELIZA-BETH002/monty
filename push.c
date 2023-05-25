@@ -2,7 +2,7 @@
 
 /**
 
- * f_push - add node to the stack
+ * push - add node to the stack
 
  * @head: stack head
 
