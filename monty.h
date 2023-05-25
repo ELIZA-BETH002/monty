@@ -110,7 +110,7 @@ void mod_stack(stack_t **stack, unsigned int line_number);
 
 /* Task 10 (Advanced) */
 
-void pchar(stack_t **stack, unsigned int line_number);
+void comments(stack_t **stack, char *line);
 
 /* Task 11 (Advanced) */
 
