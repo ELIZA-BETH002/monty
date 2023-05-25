@@ -1,16 +1,8 @@
-#include <stdio.h>
+#ifndef MONTY_H
 
-#include <stdlib.h>
+#define MONTY_H
 
-#include <sys/types.h>
-
-#include <unistd.h>
-
-#include <fcntl.h>
-
-#include <string.h>
-
-#include <ctype.h>
+/* Data Structures */
 
 /**
 
@@ -26,7 +18,7 @@
 
  * Description: doubly linked list node structure
 
- * for stack, queues, LIFO, FIFO Holberton project
+ * for stack, queues, LIFO, FIFO
 
  */
 
@@ -34,45 +26,13 @@ typedef struct stack_s
 
 {
 
- int n;
+    int n;
 
- struct stack_s *prev;
+    struct stack_s *prev;
 
- struct stack_s *next;
+    struct stack_s *next;
 
 } stack_t;
-
-/**
-
- * struct bus_s - variables -args, file, line content
-
- * @arg: value
-
- * @file: pointer to monty file
-
- * @content: line content
-
- * @lifi: flag change stack <-> queue
-
- * Description: carries values through the program
-
- */
-
-typedef struct bus_s
-
-{
-
- char *arg;
-
- FILE *file;
-
- char *content;
-
- int lifi;
-
-}  bus_t;
-
-extern bus_t bus;
 
 /**
 
@@ -86,7 +46,7 @@ extern bus_t bus;
 
  * Description: opcode and its function
 
- * for stack, queues, LIFO, FIFO Holberton project
+ * for stack, queues, LIFO, FIFO
 
  */
 
@@ -94,58 +54,62 @@ typedef struct instruction_s
 
 {
 
- char *opcode;
+    char *opcode;
 
- void (*f)(stack_t **stack, unsigned int line_number);
+    void (*f)(stack_t **stack, unsigned int line_number);
 
 } instruction_t;
 
-char *_realloc(char *ptr, unsigned int old_size, unsigned int new_size);
+/* Function Prototypes */
 
-ssize_t getstdin(char **lineptr, int file);
+/* Task 0 */
 
-char  *clean_line(char *content);
+void push(stack_t **stack, unsigned int line_number);
 
-void f_push(stack_t **head, unsigned int number);
+void pall(stack_t **stack, unsigned int line_number);
 
-void f_pall(stack_t **head, unsigned int number);
+/* Task 1 */
 
-void f_pint(stack_t **head, unsigned int number);
+void pint(stack_t **stack, unsigned int line_number);
 
-int execute(char *content, stack_t **head, unsigned int counter, FILE *file);
+/* Task 2 */
 
-void free_stack(stack_t *head);
+void pop(stack_t **stack, unsigned int line_number);
 
-void f_pop(stack_t **head, unsigned int counter);
+/* Task 3 */
 
-void f_swap(stack_t **head, unsigned int counter);
+void swap(stack_t **stack, unsigned int line_number);
 
-void f_add(stack_t **head, unsigned int counter);
+/* Task 4 */
 
-void f_nop(stack_t **head, unsigned int counter);
+void add(stack_t **stack, unsigned int line_number);
 
-void f_sub(stack_t **head, unsigned int counter);
+/* Task 5 */
 
-void f_div(stack_t **head, unsigned int counter);
+void nop(stack_t **stack, unsigned int line_number);
 
-void f_mul(stack_t **head, unsigned int counter);
+/* Task 6 (Advanced) */
 
-void f_mod(stack_t **head, unsigned int counter);
+void sub(stack_t **stack, unsigned int line_number);
 
-void f_pchar(stack_t **head, unsigned int counter);
+/* Task 7 (Advanced) */
 
-void f_pstr(stack_t **head, unsigned int counter);
+void _div(stack_t **stack, unsigned int line_number);
 
-void f_rotl(stack_t **head, unsigned int counter);
+/* Task 8 (Advanced) */
 
-void f_rotr(stack_t **head, __attribute__((unused)) unsigned int counter);
+void mul(stack_t **stack, unsigned int line_number);
 
-void addnode(stack_t **head, int n);
+/* Task 9 (Advanced) */
 
-void addqueue(stack_t **head, int n);
+void mod(stack_t **stack, unsigned int line_number);
 
-void f_queue(stack_t **head, unsigned int counter);
+/* Task 10 (Advanced) */
 
-void f_stack(stack_t **head, unsigned int counter);
+void pchar(stack_t **stack, unsigned int line_number);
 
-#endif
+/* Task 11 (Advanced) */
+
+void pstr(stack_t **stack, unsigned int line_number);
+
+#endif /* MONTY_H */
