@@ -12,7 +12,7 @@
 
 */
 
-void f_push(stack_t **head, unsigned int counter)
+void push(stack_t **head, unsigned int counter)
 
 {
 
