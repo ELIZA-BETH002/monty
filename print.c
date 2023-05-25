@@ -2,7 +2,7 @@
 
 /**
 
- * f_pint - prints the top
+ * pint - prints the top
 
  * @head: stack head
 
