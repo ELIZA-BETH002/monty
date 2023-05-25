@@ -1,4 +1,6 @@
+#include "monty.h"
 
+#include "lists.h"
 
 /**
 
@@ -16,63 +18,61 @@ void (*get_func(char **parsed))(stack_t **, unsigned int)
 
 {
 
- instruction_t func_arr[] = {
+	instruction_t func_arr[] = {		{"push", push_handler},
 
-  {"push", push_handler},
+		{"pall", pall_handler},
 
-  {"pall", pall_handler},
+		{"pint", pint_handler},
 
-  {"pint", pint_handler},
+		{"pop", pop_handler},
 
-  {"pop", pop_handler},
+		{"swap", swap_handler},
 
-  {"swap", swap_handler},
+		{"add", add_handler},
 
-  {"add", add_handler},
+		{"nop", nop_handler},
 
-  {"nop", nop_handler},
+		{"sub", sub_handler},
 
-  {"sub", sub_handler},
+		{"div", div_handler},
 
-  {"div", div_handler},
+		{"mul", mul_handler},
 
-  {"mul", mul_handler},
+		{"mod", mod_handler},
 
-  {"mod", mod_handler},
+		{"pchar", pchar_handler},
 
-  {"pchar", pchar_handler},
+		{"pstr", pstr_handler},
 
-  {"pstr", pstr_handler},
+		{"rotl", rotl_handler},
 
-  {"rotl", rotl_handler},
+		{"rotr", rotr_handler},
 
-  {"rotr", rotr_handler},
+		{"stack", stack_handler},
 
-  {"stack", stack_handler},
+		{"queue", queue_handler},
 
-  {"queue", queue_handler},
+		{NULL, NULL}
 
-  {NULL, NULL}
+	};
 
- };
+	int codes = 17, i;
 
- int codes = 17, i;
+	for (i = 0; i < codes; i++)
 
- for (i = 0; i < codes; i++)
+	{
 
- {
+		if (strcmp(func_arr[i].opcode, parsed[0]) == 0)
 
-  if (strcmp(func_arr[i].opcode, parsed[0]) == 0)
+		{
 
-  {
+			return (func_arr[i].f);
 
-   return (func_arr[i].f);
+		}
 
-  }
+	}
 
- }
-
- return (NULL);
+	return (NULL);
 
 }
 
@@ -90,61 +90,61 @@ void push_handler(stack_t **stack, unsigned int line_number)
 
 {
 
- stack_t *new;
+	stack_t *new;
 
- int num = 0, i;
+	int num = 0, i;
 
- if (data.words[1] == NULL)
+	if (data.words[1] == NULL)
 
- {
+	{
 
-  dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
+		dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
 
-  free_all(1);
+		free_all(1);
 
-  exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 
- }
+	}
 
- for (i = 0; data.words[1][i]; i++)
+	for (i = 0; data.words[1][i]; i++)
 
- {
+	{
 
-  if (isalpha(data.words[1][i]) != 0)
+		if (isalpha(data.words[1][i]) != 0)
 
-  {
+		{
 
-   dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
+			dprintf(STDERR_FILENO, PUSH_FAIL, line_number);
 
-   free_all(1);
+			free_all(1);
 
-   exit(EXIT_FAILURE);
+			exit(EXIT_FAILURE);
 
-  }
+		}
 
- }
+	}
 
- num = atoi(data.words[1]);
+	num = atoi(data.words[1]);
 
- if (data.qflag == 0)
+	if (data.qflag == 0)
 
-  new = add_dnodeint(stack, num);
+		new = add_dnodeint(stack, num);
 
- else if (data.qflag == 1)
+	else if (data.qflag == 1)
 
-  new = add_dnodeint_end(stack, num);
+		new = add_dnodeint_end(stack, num);
 
- if (!new)
+	if (!new)
 
- {
+	{
 
-  dprintf(STDERR_FILENO, MALLOC_FAIL);
+		dprintf(STDERR_FILENO, MALLOC_FAIL);
 
-  free_all(1);
+		free_all(1);
 
-  exit(EXIT_FAILURE);
+		exit(EXIT_FAILURE);
 
- }
+	}
 
 }
 
@@ -162,10 +162,10 @@ void pall_handler(stack_t **stack, unsigned int line_number)
 
 {
 
- (void)line_number;
+	(void)line_number;
 
- if (*stack)
+	if (*stack)
 
-  print_dlistint(*stack);
+		print_dlistint(*stack);
 
 }
