@@ -1,14 +1,21 @@
 #include "monty.h"
 
-int nop_stack(stack_t **stack)
+/**
+
+  *nop- nothing
+
+  *@head: stack head
+
+  *@counter: line_number
+
+  *Return: no return
+
+ */
+
+void nop(stack_t **head, unsigned int counter)
 
 {
 
-    (void)stack; // Suppress unused parameter warning
-
-    // No operation, simply return success
-
-    return EXIT_SUCCESS;
+	(void) counter;	(void) head;
 
 }
-
