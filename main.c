@@ -1,46 +1,125 @@
+#include <stdio.h>
+
+#include <stdlib.h>
+
 #include "monty.h"
 
-bus_t bus = {NULL, NULL, NULL, 0};
-/**
-* main - monty code interpreter
-* @argc: number of arguments
-* @argv: monty file location
-* Return: 0 on success
-*/
-int main(int argc, char *argv[])
-{
-	char *content;
-	FILE *file;
-	size_t size = 0;
-	ssize_t read_line = 1;
-	stack_t *stack = NULL;
-	unsigned int counter = 0;
+/* Function prototypes */
 
-	if (argc != 2)
-	{
-		fprintf(stderr, "USAGE: monty file\n");
-		exit(EXIT_FAILURE);
-	}
-	file = fopen(argv[1], "r");
-	bus.file = file;
-	if (!file)
-	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
-		exit(EXIT_FAILURE);
-	}
-	while (read_line > 0)
-	{
-		content = NULL;
-		read_line = getline(&content, &size, file);
-		bus.content = content;
-		counter++;
-		if (read_line > 0)
-		{
-			execute(content, &stack, counter, file);
-		}
-		free(content);
-	}
-	free_stack(stack);
-	fclose(file);
-return (0);
+void process_file(const char *filename);
+
+/* Main function */
+
+int main(int argc, char *argv[])
+
+{
+
+    if (argc != 2)
+
+    {
+
+        fprintf(stderr, "Usage: %s <filename>\n", argv[0]);
+
+        return EXIT_FAILURE;
+
+    }
+
+    const char *filename = argv[1];
+
+    process_file(filename);
+
+    return EXIT_SUCCESS;
+
+}
+
+/* Function to process the Monty file */
+
+void process_file(const char *filename)
+
+{
+
+    FILE *file = fopen(filename, "r");
+
+    if (file == NULL)
+
+    {
+
+        fprintf(stderr, "Error: Cannot open file %s\n", filename);
+
+        exit(EXIT_FAILURE);
+
+    }
+
+    stack_t *stack = NULL;
+
+    char *line = NULL;
+
+    size_t line_length = 0;
+
+    ssize_t read;
+
+    unsigned int line_number = 0;
+
+    while ((read = getline(&line, &line_length, file)) != -1)
+
+    {
+
+        line_number++;
+
+        /* Parse the opcode and argument from the line */
+
+        char *opcode = /* Extract the opcode */;
+
+        char *argument = /* Extract the argument if present */;
+
+        /* Execute the appropriate operation based on the opcode */
+
+        if (strcmp(opcode, "push") == 0)
+
+        {
+
+            /* Convert the argument to an integer value if needed */
+
+            int value = /* Convert the argument to an integer if present */;
+
+            push(&stack, value);
+
+        }
+
+        else if (strcmp(opcode, "pop") == 0)
+
+        {
+
+            pop(&stack);
+
+        }
+
+        else if (strcmp(opcode, "pall") == 0)
+
+        {
+
+            pall(stack);
+
+        }
+
+        else if (strcmp(opcode, /* other opcodes */) == 0)
+
+        {
+
+            /* Handle other opcodes */
+
+        }
+
+        /* Add more conditionals for other opcodes */
+
+        /* Free allocated memory for the line if needed */
+
+    }
+
+    /* Free allocated memory and close the file */
+
+    free(line);
+
+    fclose(file);
+
 }
