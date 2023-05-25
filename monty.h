@@ -62,6 +62,10 @@ typedef struct instruction_s
 
 /* Function Prototypes */
 
+/* main.c */
+
+int main(int argc, char *argv[]);
+
 /* Task 0 */
 
 void push_stack(stack_t **stack, unsigned int line_number);
