@@ -12,7 +12,7 @@
 
 */
 
-void f_pall(stack_t **head, unsigned int counter)
+void pall(stack_t **head, unsigned int counter)
 
 {
 
