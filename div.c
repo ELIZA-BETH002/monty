@@ -2,7 +2,7 @@
 
 /**
 
- * div - divides the top two elements of the stack.
+ * _div - divides the top two elements of the stack.
 
  * @head: stack head
 
@@ -12,7 +12,7 @@
 
 */
 
-void div(stack_t **head, unsigned int counter)
+void _div(stack_t **head, unsigned int counter)
 
 {
 
