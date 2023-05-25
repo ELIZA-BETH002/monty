@@ -2,7 +2,7 @@
 
 /**
 
- * f_pall - prints the stack
+ * pall - prints the stack
 
  * @head: stack head
 
