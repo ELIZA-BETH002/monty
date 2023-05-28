@@ -2,21 +2,23 @@
 
 /**
 
- * swap - adds the top two elements of the stack.
+* f_swap - function that swaps the top two elements of the stack
 
- * @head: stack head
+* @head: head of stack
 
- * @counter: line_number
+* @counter: line count
 
- * Return: no return
+*
+
+* Return: nothing
 
 */
 
-void swap(stack_t **head, unsigned int counter)
+void f_swap(stack_t **head, unsigned int counter)
 
 {
 
-	stack_t *h;	int len = 0, aux;
+	stack_t *h;	int length = 0, temp;
 
 	h = *head;
 
@@ -26,11 +28,11 @@ void swap(stack_t **head, unsigned int counter)
 
 		h = h->next;
 
-		len++;
+		length++;
 
 	}
 
-	if (len < 2)
+	if (length < 2)
 
 	{
 
@@ -48,11 +50,11 @@ void swap(stack_t **head, unsigned int counter)
 
 	h = *head;
 
-	aux = h->n;
+	temp = h->n;
 
 	h->n = h->next->n;
 
-	h->next->n = aux;
+	h->next->n = temp;
 
 }
  
