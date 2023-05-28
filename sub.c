@@ -2,29 +2,31 @@
 
 /**
 
-  *sub- sustration
+* f_sub - function that substracts nodes
 
-  *@head: stack head
+* @head: double head pointer to the stack
 
-  *@counter: line_number
+* @counter: line count
 
-  *Return: no return
+*
 
- */
+* Return: nothing
 
-void sub(stack_t **head, unsigned int counter)
+*/
+
+void f_sub(stack_t **head, unsigned int counter)
 
 {
 
-	stack_t *aux;	int sus, nodes;
+	stack_t *temp;	int sub, nd;
 
-	aux = *head;
+	temp = *head;
 
-	for (nodes = 0; aux != NULL; nodes++)
+	for (nd = 0; temp != NULL; nd++)
 
-		aux = aux->next;
+		temp = temp->next;
 
-	if (nodes < 2)
+	if (nd < 2)
 
 	{
 
@@ -40,15 +42,14 @@ void sub(stack_t **head, unsigned int counter)
 
 	}
 
-	aux = *head;
+	temp = *head;
 
-	sus = aux->next->n - aux->n;
+	sub = temp->next->n - temp->n;
 
-	aux->next->n = sus;
+	temp->next->n = sub;
 
-	*head = aux->next;
+	*head = temp->next;
 
-	free(aux);
+	free(temp);
 
 }
- 
