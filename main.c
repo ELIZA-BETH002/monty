@@ -1,14 +1,22 @@
 #include "monty.h"
 
+#include <stdio.h>
+
+#define _GNU_SOURCE
+
+#include <stdlib.h>
+
 bus_t bus = {NULL, NULL, NULL, 0};
 
 /**
 
-* main - monty code interpreter
+* main - function for monty code interpreter
 
-* @argc: number of arguments
+* @argc: argument count
 
-* @argv: monty file location
+* @argv: argument value
+
+*
 
 * Return: 0 on success
 
@@ -68,7 +76,7 @@ int main(int argc, char *argv[])
 
 		{
 
-			executer(content, &stack, counter, file);
+			execute(content, &stack, counter, file);
 
 		}
 
@@ -83,4 +91,3 @@ int main(int argc, char *argv[])
 return (0);
 
 }
- 
