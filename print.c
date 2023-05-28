@@ -2,17 +2,19 @@
 
 /**
 
- * pint - prints the top
+* f_pint - function that prints the top of the stack
 
- * @head: stack head
+* @head: double head pointer to the stack
 
- * @counter: line_number
+* @counter: line count
 
- * Return: no return
+*
+
+* Return: nothing
 
 */
 
-void pint(stack_t **head, unsigned int counter)
+void f_pint(stack_t **head, unsigned int counter)
 
 {
 
@@ -33,4 +35,3 @@ void pint(stack_t **head, unsigned int counter)
 	printf("%d\n", (*head)->n);
 
 }
- 
