@@ -2,21 +2,23 @@
 
 /**
 
- * add - adds the top two elements of the stack.
+* f_add - function that adds the top two elements of the stack
 
- * @head: stack head
+* @head: double pointer head to the stack
 
- * @counter: line_number
+* @counter: line count
 
- * Return: no return
+*
+
+* Return: nothing
 
 */
 
-void add(stack_t **head, unsigned int counter)
+void f_add(stack_t **head, unsigned int counter)
 
 {
 
-	stack_t *h;	int len = 0, aux;
+	stack_t *h;	int length = 0, temp;
 
 	h = *head;
 
@@ -26,11 +28,11 @@ void add(stack_t **head, unsigned int counter)
 
 		h = h->next;
 
-		len++;
+		length++;
 
 	}
 
-	if (len < 2)
+	if (length < 2)
 
 	{
 
@@ -48,13 +50,12 @@ void add(stack_t **head, unsigned int counter)
 
 	h = *head;
 
-	aux = h->n + h->next->n;
+	temp = h->n + h->next->n;
 
-	h->next->n = aux;
+	h->next->n = temp;
 
 	*head = h->next;
 
-	
 	free(h);
 
 }
