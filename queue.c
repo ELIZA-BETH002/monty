@@ -87,3 +87,4 @@ void addqueue(stack_t **head, int n)
 	}
 
 }
+ 

@@ -2,7 +2,7 @@
 
 /**
 
- * stack - prints the top
+ * _stack - prints the top
 
  * @head: stack head
 
@@ -12,7 +12,7 @@
 
 */
 
-void stack(stack_t **head, unsigned int counter)
+void _stack(stack_t **head, unsigned int counter)
 
 {
 
@@ -21,3 +21,4 @@ void stack(stack_t **head, unsigned int counter)
 	bus.lifi = 0;
 
 }
+ 

@@ -33,3 +33,4 @@ void pint(stack_t **head, unsigned int counter)
 	printf("%d\n", (*head)->n);
 
 }
+ 

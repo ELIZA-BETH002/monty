@@ -51,3 +51,4 @@ void sub(stack_t **head, unsigned int counter)
 	free(aux);
 
 }
+ 
