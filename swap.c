@@ -55,3 +55,4 @@ void swap(stack_t **head, unsigned int counter)
 	h->next->n = aux;
 
 }
+ 
