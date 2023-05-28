@@ -43,3 +43,4 @@ void pstr(stack_t **head, unsigned int counter)
 	printf("\n");
 
 }
+ 
