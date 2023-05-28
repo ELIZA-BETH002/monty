@@ -10,61 +10,12 @@
 
   * @line_number: line where opcode appears 
 
-  */ 
+  */
 
- void op_push(stack_t **stack, unsigned int line_number) 
+ 
 
- { 
 
-         stack_t *new, *temp; 
-
-  
-
-         if (var.optoks[1] == NULL || isint(var.optoks[1]) != 0) 
-
-         { 
-
-                 fprintf(stderr, "L%u: usage: push integer\n", line_number); 
-
-                 exit(EXIT_FAILURE); 
-
-         } 
-
-         new = malloc(sizeof(stack_t)); 
-
-         if (new == NULL) 
-
-         { 
-
-                 fprintf(stderr, "Error: malloc failed\n"); 
-
-                 exit(EXIT_FAILURE); 
-
-         } 
-
-         new->n = atoi(var.optoks[1]); 
-
-         new->prev = NULL; 
-
-         temp = *stack; 
-
-         if (temp == NULL) 
-
-                 new->next = NULL; 
-
-         else 
-
-         { 
-
-                 new->next = temp; 
-
-                 temp->prev = new; 
-
-         } 
-
-         *stack = new; 
-
- } 
+ 
 
   
 
