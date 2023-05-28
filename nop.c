@@ -2,21 +2,22 @@
 
 /**
 
-  *nop- nothing
+* f_nop - function that does nothing
 
-  *@head: stack head
+* @head: double head pointer to the stack
 
-  *@counter: line_number
+* @counter: line count
 
-  *Return: no return
+*
 
- */
+* Return: nothing
 
-void nop(stack_t **head, unsigned int counter)
+*/
+
+void f_nop(stack_t **head, unsigned int counter)
 
 {
 
 	(void) counter;	(void) head;
 
 }
- 
