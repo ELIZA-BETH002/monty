@@ -1,50 +1,107 @@
-#include "monty.h"
+#include "monty.h" 
 
-/**
+  
 
-  *rotl- rotates the stack to the top
+ /** 
 
-  *@head: stack head
+  * op_rotl - rotates the stack to the left 
 
-  *@counter: line_number
+  * @stack: pointer to the stack 
 
-  *Return: no return
+  * @line_number: line where opcode appears 
 
- */
+  */ 
 
-void rotl(stack_t **head,  __attribute__((unused)) unsigned int counter)
+ void op_rotl(stack_t **stack, unsigned int line_number) 
 
-{
+ { 
 
-	stack_t *tmp = *head, *aux;
+         stack_t *current = *stack, *tail; 
 
-	if (*head == NULL || (*head)->next == NULL)
+  
 
-	{
+         (void)line_number; 
 
-		return;
+  
 
-	}
+         if (current == NULL) 
 
-	aux = (*head)->next;
+                 return; 
 
-	aux->prev = NULL;
+         if (current->next != NULL) 
 
-	while (tmp->next != NULL)
+         { 
 
-	{
+                 tail = current; 
 
-		tmp = tmp->next;
+                 current->next->prev = NULL; 
 
-	}
+                 *stack = current->next; 
 
-	tmp->next = *head;
+                 while (current->next != NULL) 
 
-	(*head)->next = NULL;
+                         current = current->next; 
 
-	(*head)->prev = tmp;
+                 tail->next = NULL; 
 
-	(*head) = aux;
+                 current->next = tail; 
 
-}
- 
+                 tail->prev = current; 
+
+         } 
+
+ } 
+
+  
+
+ /** 
+
+  * op_rotr - rotates the stack to the right 
+
+  * @stack: pointer to the stack 
+
+  * @line_number: line where opcode appears 
+
+  */ 
+
+ void op_rotr(stack_t **stack, unsigned int line_number) 
+
+ { 
+
+         stack_t *head, *current = *stack; 
+
+  
+
+         (void)line_number; 
+
+  
+
+         if (current == NULL) 
+
+                 return; 
+
+         if (current->next != NULL) 
+
+         { 
+
+                 while (current->next != NULL) 
+
+                         current = current->next; 
+
+                 head = current; 
+
+                 head->prev->next = NULL; 
+
+                 head->prev = NULL; 
+
+                 current = *stack; 
+
+                 head->next = current; 
+
+                 current->prev = head; 
+
+                 *stack = head; 
+
+         } 
+
+ }
