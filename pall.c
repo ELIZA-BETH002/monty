@@ -2,17 +2,19 @@
 
 /**
 
- * pall - prints the stack
+* f_pall - function that prints everything in the stack
 
- * @head: stack head
+* @head: double head pointer to the stack
 
- * @counter: no used
+* @counter: unused line count
 
- * Return: no return
+*
+
+* Return: nothing
 
 */
 
-void pall(stack_t **head, unsigned int counter)
+void f_pall(stack_t **head, unsigned int counter)
 
 {
 
@@ -35,4 +37,3 @@ void pall(stack_t **head, unsigned int counter)
 	}
 
 }
- 
