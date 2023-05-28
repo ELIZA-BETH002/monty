@@ -73,3 +73,4 @@ void _div(stack_t **head, unsigned int counter)
 	free(h);
 
 }
+ 
