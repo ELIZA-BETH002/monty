@@ -18,7 +18,6 @@
 
          instruction_t ops[] = { 
 
-         {"push", op_push}, 
 
          {"pall", op_pall}, 
 
