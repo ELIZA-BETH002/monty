@@ -2,17 +2,19 @@
 
 /**
 
- * pop - prints the top
+* f_pop - function that prints the top of the stack
 
- * @head: stack head
+* @head: double head pointer to the stack
 
- * @counter: line_number
+* @counter: line count
 
- * Return: no return
+*
+
+* Return: nothing
 
 */
 
-void pop(stack_t **head, unsigned int counter)
+void f_pop(stack_t **head, unsigned int counter)
 
 {
 
@@ -41,4 +43,3 @@ void pop(stack_t **head, unsigned int counter)
 	free(h);
 
 }
- 

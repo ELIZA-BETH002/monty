@@ -2,21 +2,23 @@
 
 /**
 
- * mul - multiplies the top two elements of the stack.
+* f_mul - function that multiplies the top two elements of the stack
 
- * @head: stack head
+* @head: double head pointer to the stack
 
- * @counter: line_number
+* @counter: line count
 
- * Return: no return
+*
+
+* Return: nothing
 
 */
 
-void mul(stack_t **head, unsigned int counter)
+void f_mul(stack_t **head, unsigned int counter)
 
 {
 
-	stack_t *h;	int len = 0, aux;
+	stack_t *h;	int length = 0, temp;
 
 	h = *head;
 
@@ -26,11 +28,11 @@ void mul(stack_t **head, unsigned int counter)
 
 		h = h->next;
 
-		len++;
+		length++;
 
 	}
 
-	if (len < 2)
+	if (length < 2)
 
 	{
 
@@ -48,9 +50,9 @@ void mul(stack_t **head, unsigned int counter)
 
 	h = *head;
 
-	aux = h->next->n * h->n;
+	temp = h->next->n * h->n;
 
-	h->next->n = aux;
+	h->next->n = temp;
 
 	*head = h->next;
 
