@@ -1,93 +1,97 @@
-#include "monty.h"
+#include "monty.h" 
 
-#include <stdio.h>
+ /** 
 
-#define _GNU_SOURCE
+  * main - interprets Monty ByteCodes files 
 
-#include <stdlib.h>
+  * @ac: number of arguments 
 
-bus_t bus = {NULL, NULL, NULL, 0};
+  * @av: pointers to the arguments 
 
-/**
+  * Return: 0 on success 
 
-* main - function for monty code interpreter
+  */ 
 
-* @argc: argument count
+ int main(int ac, char **av) 
 
-* @argv: argument value
+ { 
 
-*
+         unsigned int lineno = 0; 
 
-* Return: 0 on success
+         char *buffer = NULL, *sp = " \n"; 
 
-*/
+         size_t buffer_size; 
 
-int main(int argc, char *argv[])
+         FILE *stream; 
 
-{
+         stack_t *head = NULL, *temp; 
 
-	char *content;	FILE *file;
+  
 
-	size_t size = 0;
+         if (ac != 2) 
 
-	ssize_t read_line = 1;
+         { 
 
-	stack_t *stack = NULL;
+                 write(STDERR_FILENO, "USAGE: monty file\n", 18); 
 
-	unsigned int counter = 0;
+                 exit(EXIT_FAILURE); } 
 
-	if (argc != 2)
+         stream = fopen(av[1], "r"); 
 
-	{
+         if (stream == NULL) 
 
-		fprintf(stderr, "USAGE: monty file\n");
+         { 
 
-		exit(EXIT_FAILURE);
+                 fprintf(stderr, "Error: Can't open file %s\n", av[1]); 
 
-	}
+                 exit(EXIT_FAILURE); } 
 
-	file = fopen(argv[1], "r");
+         while (getline(&buffer, &buffer_size, stream) != -1) 
 
-	bus.file = file;
+         { 
 
-	if (!file)
+                 lineno++; 
 
-	{
+                 var.optoks = split_string(buffer, sp); 
 
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+                 if (var.optoks[0] != NULL) 
 
-		exit(EXIT_FAILURE);
+                 { 
 
-	}
+                         if (var.optoks[0][0] == '#') 
 
-	while (read_line > 0)
+                         { 
 
-	{
+                                 free(var.optoks); 
 
-		content = NULL;
+                                 continue; } 
 
-		read_line = getline(&content, &size, file);
+                         else 
 
-		bus.content = content;
+                                 get_op_func(&head, lineno); 
 
-		counter++;
+                         free(var.optoks); } 
 
-		if (read_line > 0)
+                 else 
 
-		{
+                 { 
 
-			execute(content, &stack, counter, file);
+                         free(var.optoks); 
 
-		}
+                         continue; } } 
 
-		free(content);
+         free(buffer); 
 
-	}
+         while (head != NULL) 
 
-	free_stack(stack);
+         { 
 
-	fclose(file);
+                 temp = head; 
 
-return (0);
+                 head = head->next; 
 
-}
+                 free(temp); } 
+
+         fclose(stream); 
+
+         return (0); }
